@@ -6,7 +6,7 @@
 	<changeSet id="3" author="owenwe" context="dev, ci, prod">
 		<comment>This changeSet adds the filePath field to the transactions table.</comment>
 
-		<sql dbms="mysql">ALTER TABLE `pesc_networkserver`.`transactions` ADD COLUMN `filePath` VARCHAR(256) NULL DEFAULT NULL AFTER `fileSize`;</sql>
+		<sql dbms="mysql">ALTER TABLE `${hibernate.catalog}`.`transactions` ADD COLUMN `filePath` VARCHAR(256) NULL DEFAULT NULL AFTER `fileSize`;</sql>
 
 	</changeSet>
 
