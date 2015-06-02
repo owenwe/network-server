@@ -6,7 +6,7 @@
 	<changeSet id="1" author="owenwe" context="dev, ci, prod">
 		<comment>This changeSet is the initial creation of the required base tables for the Network Server.</comment>
 
-		<createTable schemaName="pesc_networkserver" tableName="transactions">
+		<createTable schemaName="${hibernate.catalog}" tableName="transactions">
 			<column name="id" type="INT UNSIGNED" autoIncrement="true">
 				<constraints nullable="false" primaryKey="true" />
 			</column>
