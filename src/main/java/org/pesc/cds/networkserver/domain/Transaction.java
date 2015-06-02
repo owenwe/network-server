@@ -31,6 +31,9 @@ public class Transaction {
 	@Column(name="fileSize")
 	private Long fileSize = 0l;
 	
+	@Column(name="filePath")
+	private String filePath;
+	
 	@Column(name="direction")
 	private String direction;
 	
@@ -54,6 +57,7 @@ public class Transaction {
 	public Integer getSenderId() { return senderId; }
 	public String getFileFormat() { return fileFormat; }
 	public Long getFileSize() { return fileSize; }
+	public String getFilePath() { return filePath; }
 	public String getDirection() { return direction; }
 	public Timestamp getSent() { return sent; }
 	public Timestamp getReceived() { return received; }
@@ -66,6 +70,7 @@ public class Transaction {
 	public void setSenderId(Integer senderId) { this.senderId = senderId; }
 	public void setFileFormat(String fileFormat) { this.fileFormat = fileFormat; }
 	public void setFileSize(Long fileSize) { this.fileSize = fileSize; }
+	public void setFilePath(String path) { filePath = path; }
 	public void setDirection(String direction) { this.direction = direction; }
 	public void setSent(Timestamp sent) { this.sent = sent; }
 	public void setReceived(Timestamp received) { this.received = received; }

@@ -3,10 +3,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-	<preConditions>
-		<dbms type="mysql" />
-	</preConditions>
-	<include file="db/db.changelog-0.0.1/changelog.xml" />
-	<include file="db/db.changelog-0.0.2/changelog.xml" />
+	<changeSet id="3" author="owenwe" context="dev, ci, prod">
+		<comment>This changeSet adds the filePath field to the transactions table.</comment>
+
+		<sql dbms="mysql">ALTER TABLE `pesc_networkserver`.`transactions` ADD COLUMN `filePath` VARCHAR(256) NULL DEFAULT NULL AFTER `fileSize`;</sql>
+
+	</changeSet>
 
 </databaseChangeLog>

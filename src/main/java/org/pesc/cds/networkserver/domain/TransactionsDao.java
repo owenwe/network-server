@@ -18,7 +18,6 @@ public class TransactionsDao {
 	public TransactionsDao() {}
 	
 	
-	
 	/**
 	 * 
 	 * 
@@ -74,7 +73,6 @@ public class TransactionsDao {
 	}
 	
 	
-	
 	public List<Transaction> all() {
 		List<Transaction> retList = new ArrayList<Transaction>();
 		try {
@@ -94,6 +92,35 @@ public class TransactionsDao {
 			HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().rollback();
 		}
 		return retList;
+	}
+	
+	
+	public Transaction byId(Integer id) {
+		Transaction retTx = null;
+		try {
+			if(HibernateUtil.getSessionFactory().isClosed()) {
+				HibernateUtil.getSessionFactory().openSession();
+			}
+			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+			session.beginTransaction();
+			
+			Criteria ct = session.createCriteria(Transaction.class).add(Restrictions.idEq(id));
+			
+			List<Transaction> txList = ct.list();
+			if(txList.size()<1) {
+				throw new Exception("Transaction query returned zero results");
+			} else {
+				retTx = txList.get(0);
+			}
+			
+			session.getTransaction().commit();
+			
+		} catch(Exception ex) {
+			log.error(ex.getMessage());
+			ex.printStackTrace();
+			HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().rollback();
+		}
+		return retTx;
 	}
 	
 	

@@ -1,5 +1,4 @@
 'use strict';
-
 $(document).ready(function() {
 	
 	// add button click event handler for the directory server API calls
@@ -17,38 +16,6 @@ $(document).ready(function() {
 			console.error(textStatus);
 			outputContainer.html(errorThrown);
 		});
-	});
-	
-	// configure the transaction history UI controls
-	$('.date').datepicker({'autoclose':true, 'format':'m/d/yyyy'});
-	$('button.getHistoryButton').click(function(e) {
-		var fromDate = $('input[name="tx-history-from"]').datepicker('getDate'),
-			toDate = $('input[name="tx-history-to"]').datepicker('getDate');
-		$.ajax({
-			'url':'getTransactions',
-			'data':{
-				'status':($('input[name="tx-history-status"]:checked').val()*1)?true:false,
-				'from':isNaN(fromDate.getTime())?null:fromDate.getTime(),
-				'to':isNaN()?null:toDate.getTime(),
-				'fetchSize':$('input[name="tx-history-fetchSize"]').val()
-			}
-		}).done(function(data, textStatus, jqxhr) {
-			console.log(data);
-			$('textarea.txHistoryResponse').val(JSON.stringify(data));
-		}).fail(function(jqxhr, textStatus, errorThrown) {
-			console.error(errorThrown);
-			$('textarea.txHistoryResponse').val(errorThrown);
-		});
-	});
-	
-	// datatable for transaction history
-	$('table.xaction-history-table').DataTable({
-		'searching':false,
-		'scrollX':true,
-		'scrollY':'400px',
-		'scrollCollapse':true,
-		'dom':'ti<"clearfix">',
-		'order':[[1,'asc']]
 	});
 	
 	// Delivery Options Search

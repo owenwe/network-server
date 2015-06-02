@@ -27,7 +27,25 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.sprin
 		<property name="maxUploadSize" value="500000" />
 	</bean>
 	
+	
+	<!-- identifier for this network server instance -->
+	<bean id="serverIdentification" class="org.pesc.cds.networkserver.domain.NetworkServerId">
+		<property name="id" value="${networkServer.id}" />
+		<property name="name" value="${networkServer.name}" />
+		<property name="subcode" value="${networkServer.subcode}" />
+		<property name="ein" value="${networkServer.ein}" />
+		<property name="webServiceUrl" value="${networkServer.webServiceUrl}" />
+	</bean>
+	
+	<!-- system properties that are set in the filter file -->
+	<bean id="systemProperties" class="org.pesc.cds.networkserver.domain.NetworkServerSettings">
+		<property name="filePath" value="${file.path}" />
+	</bean>
+	
 	<!-- auxiliary data from database -->
-    <bean id="datasourceManager" class="org.pesc.cds.networkserver.service.DatasourceManagerUtil" />
+    <bean id="datasourceManager" class="org.pesc.cds.networkserver.service.DatasourceManagerUtil">
+    	<property name="identification" ref="serverIdentification" />
+    	<property name="systemProperties" ref="systemProperties" />
+    </bean>
     
 </beans>
