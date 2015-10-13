@@ -43,8 +43,26 @@ $(document).ready(function() {
 		    {'data':'fileFormat', 'title':'File Format', 'type':'string'},
 		    {'data':'fileSize', 'title':'File Size', 'type':'num'},
 		    {'data':'filePath', 'title':'File Path', 'type':'string'},
-		    {'data':'sent', 'title':'Sent', 'type':'date'},
-		    {'data':'received', 'title':'Received', 'type':'date'},
+		    {
+		    	'data':'sent', 
+		    	'title':'Sent', 
+		    	'type':'date',
+		    	'render':function(data, type, row, meta) {
+		    		if(data) {
+		    			return moment.utc(data).format('M/D/YYYY');
+		    		} else return '';
+		    	}
+		    },
+		    {
+		    	'data':'received', 
+		    	'title':'Received', 
+		    	'type':'date',
+				'render':function(data, type, row, meta) {
+					if(data) {
+		    			return moment.utc(data).format('M/D/YYYY');
+		    		} else return '';
+		    	}
+		    },
 		    {'data':'error', 'title':'Error', 'type':'string'},
 		    {'data':'status', 'title':'Status', 'type':'string'}
 		],

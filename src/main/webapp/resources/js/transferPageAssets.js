@@ -20,12 +20,13 @@ var transferFormView = Backbone.View.extend({
 					// update hidden value for webServiceUrl
 					console.log(dopt.webserviceUrl);
 					$('form input[name="webServiceUrl"]', this.$el).val(dopt.webserviceUrl);
+					
 				} else {
-					console.log(this.model.get('deliveryOptions'));
+					return false;
 				}
+			} else {
+				return false;
 			}
-			
-			return false;
 		}
 	},
 	
